@@ -1,0 +1,21 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Secrets and local config (copy .env.example to .env)
+.env
+.env.*
+!.env.example
+
+# Runtime caches written by the API (e.g. elevation lookups)
+.cache/
+
+# Editor, OS and tool state
+.DS_Store
+.idea/
+.vscode/
+.claude/
+*.log

@@ -1,0 +1,87 @@
+/* Design tokens. Visual design comes from the Stitch project "RailJourney: Premium Live Tracking". */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --color-bg: #ffffff;
+  --color-surface: #fafafa;
+  --color-text: #1d1d1f;
+  --color-text-muted: #6e6e73;
+  --color-border: #e5e5ea;
+  --color-interactive: #0a63d6;
+  --color-success: #1a7f37;
+  --color-warning: #9a6700;
+  --color-danger: #c62828;
+  --color-neutral: #6e6e73;
+
+  --radius-card: 16px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --touch-target: 44px;
+
+
+  /* ——— Stitch palette (Material-style roles) ——— */
+  --md-primary: #004ac6;
+  --md-primary-container: #2563eb;
+  --md-on-primary: #ffffff;
+  --md-secondary: #5a5e6a;
+  --md-tertiary: #006329;
+  --md-tertiary-container: #007f36;
+  --md-tertiary-fixed: #7ffc97;
+  --md-error: #ba1a1a;
+  --md-outline: #737686;
+  --md-outline-variant: #c3c6d7;
+  --md-surface: #f9f9ff;
+  --md-surface-lowest: #ffffff;
+  --md-surface-low: #f1f3ff;
+  --md-surface-container: #e9edff;
+  --md-surface-high: #e1e8fd;
+  --md-surface-highest: #dce2f7;
+  --md-surface-variant: #dce2f7;
+  --md-on-surface: #141b2b;
+  --md-on-surface-variant: #434655;
+  --md-inverse-surface: #111827;
+  --md-inverse-on-surface: #edf0ff;
+  /* Neutral greys and accents used by the grey/centered Stitch screens. */
+  --page-bg: #ffffff;
+  --ink: #111827;
+  --grey-50: #f9fafb;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-400: #9ca3af;
+  --grey-500: #6b7280;
+  --border-soft: rgba(229, 231, 235, 0.8);
+  --border-faint: rgba(229, 231, 235, 0.6);
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --amber-500: #f59e0b;
+  --footer-bg: #f3f4f6;
+
+  /* ——— Stitch spacing ——— */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+  --space-3xl: 3rem;
+  --margin: 1rem;
+  --margin-desktop: 2rem;
+
+  --header-height: 4rem;
+
+  --motion-micro: 200ms;
+  --motion-panel: 350ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-micro: 0ms;
+    --motion-panel: 0ms;
+  }
+}
