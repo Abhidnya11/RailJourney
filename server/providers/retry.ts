@@ -1,4 +1,4 @@
-import { AppError, PermanentProviderError } from '../errors';
+import { AppError, PermanentProviderError } from '../errors.js';
 
 export interface RetryOptions {
   maxRetries: number;

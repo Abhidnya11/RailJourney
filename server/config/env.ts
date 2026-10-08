@@ -24,6 +24,8 @@ const schema = z
     CORS_ORIGINS: optionalStr,
     TRUST_PROXY: bool,
     PUBLIC_BASE_URL: optionalStr,
+    // Signs share links so they work without server-side storage (required in production / on Vercel).
+    SHARE_SIGNING_SECRET: optionalStr,
 
     TRAIN_PROVIDER: z.enum(['mock', 'railradar']).default('mock'),
     RAILRADAR_BASE_URL: optionalStr,
@@ -56,6 +58,13 @@ const schema = z
         code: 'custom',
         path: ['TRAIN_PROVIDER'],
         message: 'TRAIN_PROVIDER=mock is not allowed in production',
+      });
+    }
+    if (env.NODE_ENV === 'production' && (!env.SHARE_SIGNING_SECRET || env.SHARE_SIGNING_SECRET.length < 32)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['SHARE_SIGNING_SECRET'],
+        message: 'SHARE_SIGNING_SECRET (at least 32 characters) is required in production',
       });
     }
     if (env.TRAIN_PROVIDER === 'railradar' && (!env.RAILRADAR_BASE_URL || !env.RAILRADAR_API_KEY)) {

@@ -1,13 +1,13 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import type { FastifyInstance } from 'fastify';
-import { conditionsSchema, environmentSchema, placeWeatherSchema, terrainProfileSchema, trainSchema } from '../shared/domain';
-import { buildApp } from './app';
-import { MemoryCache } from './cache/memory';
-import { loadEnv } from './config/env';
-import { MemoryShareStore } from './modules/sharing/store';
-import { SAMPLE_COUNT } from './modules/journeys/terrain';
-import { MockTrainProvider } from './providers/mock';
-import type { ElevationProvider, WeatherProvider } from './providers/types';
+import { conditionsSchema, environmentSchema, placeWeatherSchema, terrainProfileSchema, trainSchema } from '../shared/domain.js';
+import { buildApp } from './app.js';
+import { MemoryCache } from './cache/memory.js';
+import { loadEnv } from './config/env.js';
+import { MemoryShareStore } from './modules/sharing/store.js';
+import { SAMPLE_COUNT } from './modules/journeys/terrain.js';
+import { MockTrainProvider } from './providers/mock/index.js';
+import type { ElevationProvider, WeatherProvider } from './providers/types.js';
 
 const NOW = new Date('2026-10-05T10:20:00Z');
 

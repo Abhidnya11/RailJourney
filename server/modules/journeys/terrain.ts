@@ -1,8 +1,8 @@
 import { along, length, lineString } from '@turf/turf';
-import type { Route } from '../../../shared/domain';
-import { AppError } from '../../errors';
-import { sampleBulk } from '../../providers/elevation';
-import type { ElevationProvider } from '../../providers/types';
+import type { Route } from '../../../shared/domain.js';
+import { AppError } from '../../errors.js';
+import { sampleBulk } from '../../providers/elevation.js';
+import type { ElevationProvider } from '../../providers/types.js';
 
 /** Points sampled along a route. A batch-capable provider answers them all in one request. */
 export const SAMPLE_COUNT = 60;

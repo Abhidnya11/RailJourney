@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import type { Route, Station, Train } from '../../../shared/domain';
-import { AppError, PermanentProviderError } from '../../errors';
-import type { CallContext, LiveSnapshot, TrainProvider } from '../types';
+import type { Route, Station, Train } from '../../../shared/domain.js';
+import { AppError, PermanentProviderError } from '../../errors.js';
+import type { CallContext, LiveSnapshot, TrainProvider } from '../types.js';
 
 export interface RailRadarConfig {
   baseUrl: string;

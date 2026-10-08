@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { MemoryCache } from './memory';
+import { MemoryCache } from './memory.js';
 
 describe('MemoryCache', () => {
   it('serves cached values within ttl and reloads after', async () => {

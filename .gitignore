@@ -10,6 +10,9 @@ coverage/
 .env.*
 !.env.example
 
+# Vercel CLI project link (created by `vercel link`)
+.vercel/
+
 # Runtime caches written by the API (e.g. elevation lookups)
 .cache/
 

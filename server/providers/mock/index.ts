@@ -1,8 +1,8 @@
 import { along, length, lineString } from '@turf/turf';
-import type { Route, Station, Train } from '../../../shared/domain';
-import { AppError } from '../../errors';
-import type { CallContext, LiveSnapshot, TrainProvider } from '../types';
-import { MOCK_TRAINS, type MockTrainDef } from './data';
+import type { Route, Station, Train } from '../../../shared/domain.js';
+import { AppError } from '../../errors.js';
+import type { CallContext, LiveSnapshot, TrainProvider } from '../types.js';
+import { MOCK_TRAINS, type MockTrainDef } from './data.js';
 
 /** Demo loop length: the train covers its whole route in this many minutes. */
 const CYCLE_MINUTES = 90;

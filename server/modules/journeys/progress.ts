@@ -1,6 +1,6 @@
 import { length, lineString, nearestPointOnLine } from '@turf/turf';
-import type { Route } from '../../../shared/domain';
-import type { LiveSnapshot } from '../../providers/types';
+import type { Route } from '../../../shared/domain.js';
+import type { LiveSnapshot } from '../../providers/types.js';
 
 export interface Progress {
   percentage: number | null;

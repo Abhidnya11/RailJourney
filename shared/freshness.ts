@@ -1,4 +1,4 @@
-import type { Freshness } from './domain';
+import type { Freshness } from './domain.js';
 
 export interface FreshnessThresholds {
   freshSeconds: number;

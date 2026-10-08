@@ -1,4 +1,4 @@
-import type { CallContext, ElevationProvider } from './types';
+import type { CallContext, ElevationProvider } from './types.js';
 
 /** Bulk sampling is only retried point by point on the primary when it is a handful of points (it has a daily quota). */
 const MAX_PRIMARY_FALLBACK_POINTS = 8;

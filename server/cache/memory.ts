@@ -1,4 +1,4 @@
-import type { Cache, CacheGetOptions } from './cache';
+import type { Cache, CacheGetOptions } from './cache.js';
 
 interface Entry {
   value: unknown;

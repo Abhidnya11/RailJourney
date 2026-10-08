@@ -1,4 +1,4 @@
-import { AppError } from '../../errors';
+import { AppError } from '../../errors.js';
 
 const MAX_LEN = 60;
 // Letters (incl. other scripts), digits, spaces and a few name punctuation marks.

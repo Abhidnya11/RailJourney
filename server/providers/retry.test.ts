@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { AppError, PermanentProviderError } from '../errors';
-import { withRetry } from './retry';
+import { AppError, PermanentProviderError } from '../errors.js';
+import { withRetry } from './retry.js';
 
 const opts = { maxRetries: 2, timeoutMs: 1000, sleep: async () => undefined, random: () => 0.5 };
 

@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { AppError, PermanentProviderError } from '../../errors';
-import type { CallContext, WeatherProvider, WeatherSnapshot } from '../types';
+import { AppError, PermanentProviderError } from '../../errors.js';
+import type { CallContext, WeatherProvider, WeatherSnapshot } from '../types.js';
 
 const BASE = 'https://api.openweathermap.org/data/2.5/weather';
 /** Weather barely changes over ~10 km or 10 minutes, so share one reading across nearby lookups. */

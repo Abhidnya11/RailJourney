@@ -1,4 +1,4 @@
-import type { JourneyStatus, Route, Train } from '../../shared/domain';
+import type { JourneyStatus, Route, Train } from '../../shared/domain.js';
 
 /** Provider-normalized live observation, before progress/freshness enrichment. */
 export interface LiveSnapshot {

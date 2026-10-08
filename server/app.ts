@@ -3,18 +3,18 @@ import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
 import Fastify, { type FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { createShareRequestSchema, type Conditions, type Environment, type PlaceWeather, type TerrainProfile } from '../shared/domain';
-import type { Cache } from './cache/cache';
-import type { Env } from './config/env';
-import { AppError } from './errors';
-import { normalizeSearchQuery } from './modules/trains/query';
-import { JourneyService } from './modules/journeys/service';
-import { parseJourneyId } from './modules/journeys/journey-id';
-import { sampleTerrain } from './modules/journeys/terrain';
-import { sampleBulk } from './providers/elevation';
-import type { ShareStore } from './modules/sharing/store';
-import { withRetry } from './providers/retry';
-import type { ElevationProvider, TrainProvider, WeatherProvider } from './providers/types';
+import { createShareRequestSchema, type Conditions, type Environment, type PlaceWeather, type TerrainProfile } from '../shared/domain.js';
+import type { Cache } from './cache/cache.js';
+import type { Env } from './config/env.js';
+import { AppError } from './errors.js';
+import { normalizeSearchQuery } from './modules/trains/query.js';
+import { JourneyService } from './modules/journeys/service.js';
+import { parseJourneyId } from './modules/journeys/journey-id.js';
+import { sampleTerrain } from './modules/journeys/terrain.js';
+import { sampleBulk } from './providers/elevation.js';
+import type { ShareStore } from './modules/sharing/store.js';
+import { withRetry } from './providers/retry.js';
+import type { ElevationProvider, TrainProvider, WeatherProvider } from './providers/types.js';
 
 export interface AppDeps {
   env: Env;
@@ -291,7 +291,7 @@ export async function buildApp(deps: AppDeps): Promise<FastifyInstance> {
   });
 
   app.get('/api/shares/:shareId', rl(env.RATE_LIMIT_DEFAULT_PER_MIN), async (req) => {
-    const shareId = parse(z.string().regex(/^share_[A-Za-z0-9_-]{6,40}$/), (req.params as { shareId: string }).shareId);
+    const shareId = parse(z.string().regex(/^share_[A-Za-z0-9_.-]{6,300}$/), (req.params as { shareId: string }).shareId);
     const share = await shares.get(shareId);
     if (!share) throw new AppError('NOT_FOUND', 'This shared journey link has expired or does not exist.');
     return { shareId: share.shareId, journeyId: share.journeyId, expiresAt: share.expiresAt };

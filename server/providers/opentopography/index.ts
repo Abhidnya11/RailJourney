@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
-import { AppError, PermanentProviderError } from '../../errors';
-import type { CallContext, ElevationProvider } from '../types';
+import { AppError, PermanentProviderError } from '../../errors.js';
+import type { CallContext, ElevationProvider } from '../types.js';
 
 const BASE = 'https://portal.opentopography.org/API/globaldem';
 /** Half-width of the sampled square, in degrees (~220 m): a few 30 m cells around the point. */

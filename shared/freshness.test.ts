@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeFreshness } from './freshness';
+import { computeFreshness } from './freshness.js';
 
 const now = new Date('2026-10-01T18:10:00Z');
 const ago = (s: number) => new Date(now.getTime() - s * 1000).toISOString();

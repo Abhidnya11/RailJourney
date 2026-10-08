@@ -1,4 +1,4 @@
-import type { ApiError } from '../shared/domain';
+import type { ApiError } from '../shared/domain.js';
 
 export type ErrorCode = ApiError['error']['code'];
 

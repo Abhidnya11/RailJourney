@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { AppError, PermanentProviderError } from '../../errors';
-import { RailRadarProvider, cleanTrainName, toSnapshot, type LiveData } from './index';
+import { AppError, PermanentProviderError } from '../../errors.js';
+import { RailRadarProvider, cleanTrainName, toSnapshot, type LiveData } from './index.js';
 
 const config = { baseUrl: 'https://api.test/v1', apiKey: 'k', timeoutMs: 1000, maxRetries: 0 };
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status });

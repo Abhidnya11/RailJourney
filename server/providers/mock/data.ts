@@ -1,4 +1,4 @@
-import type { Station } from '../../../shared/domain';
+import type { Station } from '../../../shared/domain.js';
 
 export interface MockTrainDef {
   number: string;

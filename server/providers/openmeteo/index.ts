@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { AppError, PermanentProviderError } from '../../errors';
-import type { CallContext, ElevationProvider } from '../types';
+import { AppError, PermanentProviderError } from '../../errors.js';
+import type { CallContext, ElevationProvider } from '../types.js';
 
 const BASE = 'https://api.open-meteo.com/v1/elevation';
 /** The service accepts up to 100 coordinates per request. */

@@ -50,12 +50,23 @@ VITE_MAPTILER_KEY=...
 | `OPENWEATHER_API_KEY` | Current weather at stations and under the train | [openweathermap.org/api](https://openweathermap.org/api) |
 | `OPENTOPOGRAPHY_API_KEY` | 30 m ground elevation for stations | [opentopography.org](https://opentopography.org) |
 | `VITE_MAPTILER_KEY` | Basemap tiles (no key = plain dark canvas) | [maptiler.com](https://www.maptiler.com) |
+| `SHARE_SIGNING_SECRET` | Signs share links (required in production; 32+ random characters) | Generate it yourself, see `.env.example` |
 
 Server keys never reach the browser. **`VITE_MAPTILER_KEY` does** — restrict it to your domains in the MapTiler
 dashboard. Never commit `.env` (it is git-ignored). Restart the dev servers after editing it.
 
 All other settings (cache lifetimes, poll interval, rate limits, freshness thresholds) are documented in
 [`.env.example`](.env.example).
+
+## Deploying
+
+The project is set up for [Vercel](https://vercel.com): the site is static, and `/api/*` runs as one serverless
+function (`api/index.ts`) that holds the secret keys. Step-by-step instructions for beginners, the exact
+environment variables to add, and a checklist for testing every API afterwards are in
+[**DEPLOYMENT.md**](DEPLOYMENT.md).
+
+Secrets are only ever read from environment variables (`.env` locally, Vercel's dashboard in production). The one
+key that reaches the browser is `VITE_MAPTILER_KEY`, which MapTiler requires; restrict it to your domain.
 
 ## Free-tier limits
 
@@ -87,6 +98,7 @@ src/                 React app
   features/          live-journey, home, search, journey-map, alerts, favourites, …
   components/        layout (header, footer), ui atoms
   styles/            tokens, layout, components, home (plain CSS)
+api/                 Vercel serverless entry point (wraps the Fastify app)
 server/              Fastify API
   providers/         railradar, openweather, opentopography, openmeteo, mock
   modules/           journeys (live, route, terrain), trains, sharing
@@ -103,8 +115,8 @@ and returns the app's own types — provider-specific fields never leave `server
 - **No live speed.** RailRadar does not report a speed for running trains (it sends 0 or nothing), so the speed
   tile shows "—" rather than a made-up number.
 - **Alerts need the page open.** There is no push notification service.
-- **Shared links live in memory.** They are lost when the API restarts.
-- **No deployment setup yet.** The API does not serve the built front end, and there is no Docker or hosting config.
+- **Shared links are signed, not stored.** They work on any server instance and expire after `SHARE_TTL_HOURS`; they cannot be revoked early.
+- **Vercel limits apply.** Function time limits (30 s configured), RailRadar's 1,000 requests a month, and in-memory caches that reset when an instance restarts.
 - **Nearby places** (the Overpass provider) are declared but not implemented.
 
 ## License

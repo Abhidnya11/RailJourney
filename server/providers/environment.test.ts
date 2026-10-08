@@ -2,12 +2,12 @@ import { describe, expect, it, vi } from 'vitest';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { AppError, PermanentProviderError } from '../errors';
-import { FallbackElevationProvider, sampleBulk } from './elevation';
-import { OpenMeteoElevationProvider } from './openmeteo';
-import type { ElevationProvider } from './types';
-import { OpenTopographyProvider, meanElevation } from './opentopography';
-import { OpenWeatherProvider, placeCandidates } from './openweather';
+import { AppError, PermanentProviderError } from '../errors.js';
+import { FallbackElevationProvider, sampleBulk } from './elevation.js';
+import { OpenMeteoElevationProvider } from './openmeteo/index.js';
+import type { ElevationProvider } from './types.js';
+import { OpenTopographyProvider, meanElevation } from './opentopography/index.js';
+import { OpenWeatherProvider, placeCandidates } from './openweather/index.js';
 
 describe('meanElevation', () => {
   it('averages an ASCII grid and ignores nodata', () => {

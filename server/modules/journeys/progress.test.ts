@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import type { Route } from '../../../shared/domain';
-import type { LiveSnapshot } from '../../providers/types';
-import { computeProgress } from './progress';
+import type { Route } from '../../../shared/domain.js';
+import type { LiveSnapshot } from '../../providers/types.js';
+import { computeProgress } from './progress.js';
 
 const route: Route = {
   id: 'r',

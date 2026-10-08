@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { FastifyInstance } from 'fastify';
-import { liveJourneySchema, routeSchema, stationsResponseSchema } from '../shared/domain';
-import { buildApp } from './app';
-import { MemoryCache } from './cache/memory';
-import { loadEnv } from './config/env';
-import { MemoryShareStore } from './modules/sharing/store';
-import { MockTrainProvider } from './providers/mock';
+import { liveJourneySchema, routeSchema, stationsResponseSchema } from '../shared/domain.js';
+import { buildApp } from './app.js';
+import { MemoryCache } from './cache/memory.js';
+import { loadEnv } from './config/env.js';
+import { MemoryShareStore } from './modules/sharing/store.js';
+import { MockTrainProvider } from './providers/mock/index.js';
 
 const NOW = new Date('2026-10-05T10:20:00Z');
 
@@ -121,6 +121,12 @@ describe('rate limiting', () => {
 describe('env', () => {
   it('rejects the mock provider in production', () => {
     expect(() => loadEnv({ NODE_ENV: 'production', TRAIN_PROVIDER: 'mock' })).toThrow(/not allowed in production/);
+  });
+  it('requires a strong share-signing secret in production', () => {
+    const base = { NODE_ENV: 'production', TRAIN_PROVIDER: 'railradar', RAILRADAR_BASE_URL: 'https://x', RAILRADAR_API_KEY: 'k' };
+    expect(() => loadEnv(base)).toThrow(/SHARE_SIGNING_SECRET/);
+    expect(() => loadEnv({ ...base, SHARE_SIGNING_SECRET: 'too-short' })).toThrow(/SHARE_SIGNING_SECRET/);
+    expect(() => loadEnv({ ...base, SHARE_SIGNING_SECRET: 'x'.repeat(32) })).not.toThrow();
   });
   it('enables the elevation fallback by default and lets it be switched off', () => {
     expect(loadEnv({ NODE_ENV: 'test' }).ELEVATION_FALLBACK).toBe(true);

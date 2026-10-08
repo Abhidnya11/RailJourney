@@ -1,10 +1,10 @@
-import type { LiveJourney, Route, Station, StationsResponse } from '../../../shared/domain';
-import { computeFreshness, type FreshnessThresholds } from '../../../shared/freshness';
-import type { Cache } from '../../cache/cache';
-import { AppError } from '../../errors';
-import type { LiveSnapshot, TrainProvider } from '../../providers/types';
-import { makeJourneyId, parseJourneyId, serviceDateIST } from './journey-id';
-import { computeProgress } from './progress';
+import type { LiveJourney, Route, Station, StationsResponse } from '../../../shared/domain.js';
+import { computeFreshness, type FreshnessThresholds } from '../../../shared/freshness.js';
+import type { Cache } from '../../cache/cache.js';
+import { AppError } from '../../errors.js';
+import type { LiveSnapshot, TrainProvider } from '../../providers/types.js';
+import { makeJourneyId, parseJourneyId, serviceDateIST } from './journey-id.js';
+import { computeProgress } from './progress.js';
 
 export interface JourneyServiceConfig {
   liveTtlSeconds: number;
