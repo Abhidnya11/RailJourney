@@ -28,6 +28,21 @@ afterEach(async () => {
 });
 
 describe('Vercel function (api/index.ts)', () => {
+  it('reports a missing production setting as a readable JSON error, never a crash or a secret', async () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    vi.stubEnv('TRAIN_PROVIDER', 'railradar');
+    vi.stubEnv('RAILRADAR_BASE_URL', 'https://example.test/v1');
+    vi.stubEnv('RAILRADAR_API_KEY', 'k'.repeat(40));
+    vi.stubEnv('SHARE_SIGNING_SECRET', ''); // forgotten in the Vercel dashboard
+    await startInstance();
+    const res = await fetch(`${base}/api/health`);
+    expect(res.status).toBe(500);
+    const body = (await res.json()) as { error: { code: string; message: string } };
+    expect(body.error.code).toBe('STARTUP_FAILED');
+    expect(body.error.message).toContain('SHARE_SIGNING_SECRET');
+    expect(JSON.stringify(body)).not.toContain('k'.repeat(24));
+  });
+
   it('serves the API through the serverless handler', async () => {
     await startInstance();
     const health = await fetch(`${base}/api/health`);
